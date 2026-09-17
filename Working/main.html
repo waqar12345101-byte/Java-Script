@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        input {
+            padding: 8px;
+            width: 70%;
+            margin-right: 5px;
+        }
+        button {
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 id="main-title">Interactive Page</h2>
+    <p id="description">Type something below and click the button!</p>
+
+    <div class="input-group">
+        <input type="text" id="userInput" placeholder="Enter text here...">
+        <button id="actionBtn">Click Me</button>
+    </div>
+
+    <div id="result"></div>
+    <script>
+   let input = document.querySelector('#userInput')
+   let submit = document.querySelector('#actionBtn')
+   let result = document.querySelector('#result') 
+   let event = submit.addEventListener('click',function(e) {
+    e.preventDefault();
+    const final = input.value.trim(); 
+    result.innerHTML = `<span>Hello, ${final}!</span>`; 
+   })
+    </script>
+</body>
+</html>
