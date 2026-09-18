@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Knowledge Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .quiz-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        button.option-btn {
+            padding: 10px;
+            border: 1px solid #007bff;
+            background-color: white;
+            color: #007bff;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: left;
+            transition: 0.2s;
+        }
+        button.option-btn:hover {
+            background-color: #007bff;
+            color: white;
+        }
+        #nextBtn, #restartBtn {
+            padding: 10px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #nextBtn:hover, #restartBtn:hover {
+            background-color: #218838;
+        }
+        #score-display {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        <h2 id="question">Question text will load here...</h2>
+        <div class="options" id="optionsContainer"></div>
+        <button id="nextBtn">Next Question</button>
+        <div id="resultContainer" class="hidden">
+            <p id="score-display"></p>
+            <button id="restartBtn">Restart Quiz</button>
+        </div>
+    </div>
+    <script>
+        const quizData = [
+            {
+                question: "Which method is used to select an element by ID?",
+                options: ["querySelector", "getElementById", "querySelectorAll", "getElementByClassName"],
+                correct: 1
+            },
+            {
+                question: "What does DOM stand for in JavaScript?",
+                options: [
+                    "Data Object Model",
+                    "Document Object Model",
+                    "Digital Ordinance Model",
+                    "Desktop Oriented Management"
+                ],
+                correct: 1
+            },
+            {
+                question: "Which keyword creates a block-scoped constant variable?",
+                options: ["var", "let", "const", "static"],
+                correct: 2
+            }
+        ];
+
+        let questionEl = document.querySelector('#question');
+        let optionsContainer = document.querySelector('#optionsContainer'); 
+        let nextButton = document.querySelector('#nextBtn');
+        let resultContainer = document.querySelector('#resultContainer');
+        let scoreDisplay = document.querySelector('#score-display');    
+        let restartBtn = document.querySelector('#restartBtn');
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function loadQuiz() {
+            let currentQuiz = quizData[currentQuestionIndex];
+            
+            questionEl.textContent = currentQuiz.question;
+            
+            optionsContainer.innerHTML = '';
+
+            currentQuiz.options.forEach((opt, index) => {
+                let btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = opt;
+                
+                btn.addEventListener('click', function() {
+                    checkAnswer(index);
+                });
+
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIndex) {
+            if (selectedIndex === quizData[currentQuestionIndex].correct) {
+                score++;
+            }
+            nextQuestion();
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.length) {
+                loadQuiz();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            questionEl.classList.add('hidden');
+            optionsContainer.classList.add('hidden');
+            nextButton.classList.add('hidden');
+            
+            resultContainer.classList.remove('hidden');
+            scoreDisplay.textContent = `You scored ${score} out of ${quizData.length}!`;
+        }
+
+        nextButton.addEventListener('click', nextQuestion);
+        
+        restartBtn.addEventListener('click', function() {
+            currentQuestionIndex = 0;
+            score = 0;
+            questionEl.classList.remove('hidden');
+            optionsContainer.classList.remove('hidden');
+            nextButton.classList.remove('hidden');
+            resultContainer.classList.add('hidden');
+            loadQuiz();
+        });
+
+        loadQuiz();
+    </script>
+</body>
+</html>
