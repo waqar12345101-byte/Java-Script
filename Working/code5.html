@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Toggle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        .field {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 8px 15px;
+            cursor: pointer;
+            border: 1px solid #007bff;
+            background-color: white;
+            color: #007bff;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Login Field</h2>
+    
+    <div class="field">
+        <input type="password" id="passwordInput" placeholder="Enter password...">
+        <button id="toggleBtn">Show</button>
+    </div>
+    <script>
+         let password = document.querySelector('#passwordInput')
+         let button = document.querySelector('#toggleBtn')
+         button.addEventListener('click',function(e){
+         e.preventDefault();
+         if(password.type === 'password') {
+            password.type = 'text'
+            button.innerHTML = "Hide"
+         }
+         else if(password.type === 'text') {
+            password.type = 'password'
+            button.innerHTML = "Show"
+         }
+         })        
+    </script>
+</body>
+</html>
