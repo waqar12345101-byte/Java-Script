@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 450px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 8px 15px;
+            cursor: pointer;
+            border: 1px solid #007bff;
+            background-color: white;
+            color: #007bff;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #007bff;
+            color: white;
+        }
+        img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Pet Image Viewer</h2>
+
+    <div class="btn-group">
+        <button id="btnCat">Cat</button>
+        <button id="btnDog">Dog</button>
+        <button id="btnFox">Fox</button>
+    </div>
+
+    <img id="previewImg" src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500" alt="Pet preview">
+
+    <script>
+        let cat = document.querySelector('#btnCat')
+        let dog = document.querySelector('#btnDog')
+        let fox = document.querySelector('#btnFox')
+        let image = document.querySelector("#previewImg")
+        cat.addEventListener('click',function(){
+        image.src = "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500"  
+        })
+         dog.addEventListener('click',function(){
+        image.src = "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=500"  
+        })
+         fox.addEventListener('click',function(){
+        image.src = "https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=500"  
+        })
+        
+    </script>
+</body>
+</html>
