@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 80px auto;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            text-align: center;
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+        #clock {
+            font-size: 3rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #00ffcc;
+            margin: 15px 0;
+        }
+        #date {
+            font-size: 1.1rem;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Digital Clock</h2>
+    <div id="clock">00:00:00</div>
+    <div id="date">Loading date...</div>
+
+    <script>
+        const clockElement = document.querySelector('#clock');
+const dateElement = document.querySelector('#date');
+
+function updateClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    dateElement.textContent = now.toLocaleDateString('en-US', options);
+}
+updateClock();
+setInterval(updateClock, 1000);
+        
+        
+    </script>
+</body>
+</html>
