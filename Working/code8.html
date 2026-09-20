@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 450px;
+            margin: 80px auto;
+            padding: 25px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        #quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        #author {
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 18px;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Daily Inspiration</h2>
+    <p id="quote">"Click the button to get a quote!"</p>
+    <p id="author">- Unknown</p>
+
+    <button id="newQuoteBtn">New Quote</button>
+
+    <script>
+        const quotes = [{line : "Talk is cheap. Show me the code." , author : "Linus Torvalds"},
+        {line :"First, solve the problem. Then, write the code." , author :"John Johnson"},
+        {line :"Experience is the name everyone gives to their mistakes." , author : "Oscar Wilde" },
+        {line :"Simplicity is prerequisite for reliability." , author : "Edsger W. Dijkstra"}]
+        
+        let quote = document.querySelector('#quote')
+        let writer = document.querySelector('#author')
+        let button = document.querySelector('#newQuoteBtn')
+
+        button.addEventListener('click',function(){
+        let m = Math.floor(Math.random()*quotes.length)
+              quote.innerHTML = quotes[m].line
+              writer.innerHTML = quotes[m].author
+        })
+    </script>
+</body>
+</html>
